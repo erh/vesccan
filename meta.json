@@ -1,0 +1,30 @@
+{
+  "$schema": "https://dl.viam.dev/module.schema.json",
+  "module_id": "erh:vesc-can",
+  "visibility": "public",
+  "url": "",
+  "description": "Modular motor component: vesc-can-motor",
+  "models": [
+    {
+      "api": "rdk:component:motor",
+      "model": "erh:vesc-can:vesc-can-motor",
+      "short_description": "Provide a short (100 characters or less) description of this model here",
+      "markdown_link": "README.md#model-erhvesc-canvesc-can-motor"
+    }
+  ],
+  "applications": null,
+  "markdown_link": "README.md",
+  "entrypoint": "bin/vesc-can",
+  "first_run": "",
+  "build": {
+    "build": "make module.tar.gz",
+    "setup": "make setup",
+    "path": "bin/module.tar.gz",
+    "arch": [
+      "linux/amd64",
+      "linux/arm64",
+      "darwin/arm64",
+      "windows/amd64"
+    ]
+  }
+}
