@@ -22,6 +22,8 @@ func realMain() error {
 	canInterface := flag.String("interface", "", "can interface")
 	id := flag.Int("id", 0, "motor id")
 
+	flag.Parse()
+
 	ctx := context.Background()
 	logger := logging.NewLogger("cli")
 
