@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
-	"vesccan"
+	"flag"
+
+	"go.viam.com/rdk/components/motor"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
-	"go.viam.com/rdk/components/motor"
+	"vesccan"
 )
 
 func main() {
@@ -16,13 +18,22 @@ func main() {
 }
 
 func realMain() error {
+	canInterface := flag.String("interface", "", "can interface")
+	id := flag.Int("id", 0, "motor id")
+
 	ctx := context.Background()
 	logger := logging.NewLogger("cli")
 
-	deps := resource.Dependencies{}
-	// can load these from a remote machine if you need
+	cfg := vesccan.Config{
+		Interface: *canInterface,
+		Id:        *id,
+	}
+	_, _, err := cfg.Validate("")
+	if err != nil {
+		return err
+	}
 
-	cfg := vesccan.Config{}
+	deps := resource.Dependencies{}
 
 	thing, err := vesccan.NewVescCanMotor(ctx, deps, motor.Named("foo"), &cfg, logger)
 	if err != nil {
