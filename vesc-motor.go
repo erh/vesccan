@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/go-daq/canbus"
+	"go.uber.org/multierr"
 
 	"go.viam.com/rdk/components/motor"
 	"go.viam.com/rdk/logging"
@@ -417,7 +418,8 @@ func (m *vescCanVescCanMotor) handleStatusMessage(frame canbus.Frame) {
 	m.status.LastUpdate = time.Now()
 }
 
-func (m *vescCanVescCanMotor) Close(context.Context) error {
+func (m *vescCanVescCanMotor) Close(ctx context.Context) error {
+	err := m.Stop(ctx, nil)
 	m.cancelFunc()
-	return m.socket.Close()
+	return multierr.Combine(err, m.socket.Close())
 }

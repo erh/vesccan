@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"time"
 
 	"go.viam.com/rdk/components/motor"
 	"go.viam.com/rdk/logging"
@@ -35,11 +36,25 @@ func realMain() error {
 
 	deps := resource.Dependencies{}
 
-	thing, err := vesccan.NewVescCanMotor(ctx, deps, motor.Named("foo"), &cfg, logger)
+	m, err := vesccan.NewVescCanMotor(ctx, deps, motor.Named("foo"), &cfg, logger)
 	if err != nil {
 		return err
 	}
-	defer thing.Close(ctx)
+	defer m.Close(ctx)
+
+	logger.Infof("Setting power")
+	err = m.SetPower(ctx, .25, nil)
+	if err != nil {
+		return err
+	}
+	time.Sleep(time.Second * 2)
+
+	logger.Infof("Setting RPM")
+	err = m.SetRPM(ctx, 60, nil)
+	if err != nil {
+		return err
+	}
+	time.Sleep(time.Second * 2)
 
 	return nil
 }

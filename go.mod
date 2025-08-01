@@ -6,8 +6,8 @@ toolchain go1.24.3
 
 require (
 	github.com/go-daq/canbus v0.2.0
+	go.uber.org/multierr v1.11.0
 	go.viam.com/rdk v0.86.2
-	go.viam.com/utils v0.1.154
 )
 
 require (
@@ -145,10 +145,10 @@ require (
 	go.opentelemetry.io/otel/metric v1.35.0 // indirect
 	go.opentelemetry.io/otel/trace v1.35.0 // indirect
 	go.uber.org/goleak v1.3.0 // indirect
-	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
 	go.viam.com/api v0.1.455 // indirect
 	go.viam.com/test v1.2.4 // indirect
+	go.viam.com/utils v0.1.154 // indirect
 	go4.org/unsafe/assume-no-moving-gc v0.0.0-20230525183740-e7c30c78aeb2 // indirect
 	golang.org/x/arch v0.19.0 // indirect
 	golang.org/x/crypto v0.40.0 // indirect
