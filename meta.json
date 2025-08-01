@@ -2,7 +2,7 @@
     "$schema": "https://dl.viam.dev/module.schema.json",
     "module_id": "erh:vesc-can",
     "visibility": "public",
-    "url": "",
+    "url": "https://github.com/erh/vesccan",
     "description": "Modular motor component: vesc-can-motor",
     "models": [
         {
